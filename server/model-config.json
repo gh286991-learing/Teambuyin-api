@@ -37,5 +37,13 @@
   },
   "Message": {
     "dataSource": null
+  },
+  "customer": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Test": {
+    "dataSource": "db",
+    "public": true
   }
 }

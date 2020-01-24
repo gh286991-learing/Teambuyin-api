@@ -1,6 +1,12 @@
 {
   "db": {
+    "host": "localhost",
+    "port": 6019,
+    "url": "",
+    "database": "teambuyingdb",
+    "password": "teambuyingdb",
     "name": "db",
-    "connector": "memory"
+    "user": "teambuyingdb",
+    "connector": "mysql"
   }
 }
