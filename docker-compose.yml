@@ -1,0 +1,38 @@
+# this is for local MacOSX use only
+version: '2.1'
+
+services:
+  mysql:
+    container_name: teambuying-mysql
+    image: mysql:5.7
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - 6019:3306
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_DATABASE=teambuyingdb
+      - MYSQL_USER=teambuyingdb
+      - MYSQL_PASSWORD=teambuyingdb
+    healthcheck:
+      test: "exit 0"
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  api:
+    container_name: teambuying-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: teambuying-api
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - 3019:80
+    environment:
+      - MYSQL_HOST=host.docker.internal
+      - MYSQL_PORT=6019
+      - MYSQL_DATABASE=teambuyingdb
+      - MYSQL_USERNAME=teambuyingdb
+      - MYSQL_PASSWORD=teambuyingdb
