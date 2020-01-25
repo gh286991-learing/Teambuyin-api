@@ -9,8 +9,7 @@
     "lint": "eslint .",
     "start": "node .",
     "start:local": "nodemon --ignore opt/ --watch './server' -e json,js,ejs --exec node .",
-    "posttest": "npm run lint && npm audit",
-    "automigrate": "node server/boot/03_auto-update-db-schema.js"
+    "start:local:auto": "yarn start:local reset-db"
   },
   "dependencies": {
     "compression": "^1.0.3",
@@ -20,9 +19,12 @@
     "loopback-boot": "^2.6.5",
     "loopback-component-explorer": "^6.2.0",
     "loopback-connector-mysql": "^5.4.2",
+    "moment": "^2.24.0",
     "nodemon": "^2.0.2",
+    "ramda": "^0.26.1",
     "serve-favicon": "^2.0.1",
-    "strong-error-handler": "^3.0.0"
+    "strong-error-handler": "^3.0.0",
+    "uid2": "^0.0.3"
   },
   "devDependencies": {
     "eslint": "^5.1.1",

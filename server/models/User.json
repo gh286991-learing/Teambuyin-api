@@ -1,0 +1,71 @@
+{
+  "name": "User",
+  "description": "帳號",
+  "base": "PersistedModel",
+  "forceId": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true,
+    "allowEternalTokens": true
+  },
+  "properties": {
+    "email": {
+      "type": "string"
+    },
+    "password": {
+      "type": "string",
+      "description":"Password"
+    },
+    "name": {
+      "type": "string",
+      "description":"name"
+    },
+    "gender": {
+      "type": "string",
+      "description":"gender"
+    },
+    "birthday": {
+      "type": "date",
+      "description":"birthday"
+    },
+    "phone": {
+      "type": "string",
+      "description":"phone"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "accessTokens": {
+      "type": "hasMany",
+      "model": "AccessToken",
+      "foreignKey": "userId",
+      "options": {
+        "disableInclude": true
+      }
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "property": "*",
+      "permission": "DENY",
+      "principalType": "ROLE",
+      "principalId": "$everyone"
+    },
+    {
+      "accessType": "*",
+      "property": ["login","logout", "register"],
+      "permission": "ALLOW",
+      "principalType": "ROLE",
+      "principalId": "$everyone"
+    },
+    {
+      "accessType": "*",
+      "property": "*",
+      "permission": "ALLOW",
+      "principalType": "ROLE",
+      "principalId": "Admin"
+    }
+  ],
+  "methods": {}
+}
